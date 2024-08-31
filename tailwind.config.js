@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         lexend: ["Lexend", "sans-serif"],
         cairo: ["Cairo", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
       colors: {
         customRed: "#EE232F",

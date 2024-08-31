@@ -1,4 +1,4 @@
-import { Lexend, Cairo } from "next/font/google";
+import { Lexend, Cairo, Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { Toaster } from "react-hot-toast";
@@ -12,6 +12,10 @@ const cairo = Cairo({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"], // Add the weights you need
 });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"], // Add the weights you need
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -21,7 +25,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`  ${lexend.className} ${cairo.className}`}>
+      <body
+        className={`  ${lexend.className} ${cairo.className} ${inter.className}`}>
         <div className="  pl-7 flex py-10 ">
           {/* Sidebar */}
           <div className=" w-[329px] h-[943px]">
