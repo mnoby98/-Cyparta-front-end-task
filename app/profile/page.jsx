@@ -12,7 +12,11 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get(`${url}profile/`);
+        const response = await axios.get(`${url}profile/`, {
+          headers: {
+            Authorization: "Token c4b6558ef8d7c34742bc985931d4bcf68c4f5330", // Your token here
+          },
+        });
         setProfileData(response?.data);
       } catch (err) {
         setError(err.message);
@@ -34,7 +38,10 @@ const Profile = () => {
         />
       </div>
       <div className="mr-[187px] ml-[57px] mt-[41px]">
-        <EmployeeInfo edit={edit} />
+        <EmployeeInfo
+          edit={edit}
+          profileData={profileData}
+        />
       </div>
     </div>
   );

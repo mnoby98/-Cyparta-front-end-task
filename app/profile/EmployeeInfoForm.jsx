@@ -1,6 +1,8 @@
 import ProfileField from "@/components/Formik/ProfileField";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { url } from "@/utils/api";
 
 const PersonalInfoSchema = Yup.object().shape({
   firstName: Yup.string(),
@@ -10,24 +12,50 @@ const PersonalInfoSchema = Yup.object().shape({
     /^[0-9]+$/,
     "Mobile number must be Numbers"
   ),
-  dateOfBirth: Yup.date(),
-  gender: Yup.string(),
-  address: Yup.string(),
-  city: Yup.string(),
-  state: Yup.string(),
-  zipCode: Yup.string().matches(/^[0-9]+$/, "zipCode number must be Numbers"),
-  workHours: Yup.number(),
-  salaryPerHour: Yup.number(),
+  // dateOfBirth: Yup.date(),
+  // gender: Yup.string(),
+  // maritalStatus: Yup.string(),
+  // address: Yup.string(),
+  // city: Yup.string(),
+  // state: Yup.string(),
+  // zipCode: Yup.string().matches(/^[0-9]+$/, "zipCode number must be Numbers"),
+  // workHours: Yup.number(),
+  // salaryPerHour: Yup.number(),
 });
 
-const EmployeeInfoForm = ({ edit }) => {
+const submitEdit = async (values) => {
+  try {
+    const response = await axios.patch(
+      `${url}profile`,
+      {
+        first_name: values.first_name,
+        last_name: values.last_name,
+        email: values.email,
+        phone: values?.mobileNumber,
+        bio: values?.bio || null, //Is not in UI Figma
+      },
+      {
+        // TODO
+        // Replace with token from login
+        headers: {
+          Authorization: "Token c4b6558ef8d7c34742bc985931d4bcf68c4f5330", // Your token here
+        },
+      }
+    );
+    console.log("Data submitted successfully:", response.data);
+  } catch (error) {
+    console.error("Error submitting data:", error);
+  }
+};
+
+const EmployeeInfoForm = ({ edit, profileData }) => {
   return (
     <Formik
       initialValues={{
-        firstName: "Mariam",
-        lastName: "Aly",
-        email: "mariam@gmail.com ",
-        mobileNumber: "010567240256",
+        firstName: profileData?.first_name || "Mariam",
+        lastName: profileData?.last_name || "Aly",
+        email: profileData?.email || "mariam@gmail.com ",
+        mobileNumber: profileData?.phone || "010567240256",
         dateOfBirth: "July 14, 1995",
         maritalStatus: "Single",
         gender: "Female",
@@ -41,10 +69,7 @@ const EmployeeInfoForm = ({ edit }) => {
         totalSalary: "54000",
       }}
       validationSchema={PersonalInfoSchema}
-      onSubmit={(values) => {
-        console.log("Form Data", values);
-        // You can handle form submission here (e.g., send data to the server)
-      }}>
+      onSubmit={submitEdit}>
       {({ values, setFieldValue }) => (
         <Form>
           <div className="grid grid-cols-2 font-light gap-[20px]">
@@ -71,7 +96,7 @@ const EmployeeInfoForm = ({ edit }) => {
               id={"email"}
               name={"email"}
               placeholder={"example@example.com"}
-              type={"email"}
+              type={"text"}
               readOnly={!edit}
               label={"Email Address"}
               value={values.email}

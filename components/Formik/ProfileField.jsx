@@ -29,6 +29,7 @@ const ProfileField = ({
       <ErrorMessage
         name={name}
         component="div"
+        className=" text-red-500"
       />
     </div>
   );
