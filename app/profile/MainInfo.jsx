@@ -15,6 +15,8 @@ const MainInfo = ({ profileData, setEdit, edit }) => {
         <Image
           src={profileData?.image || user}
           alt="user"
+          width={100}
+          height={100}
           className=" w-[100px] h-[100px]"
         />
         <div className=" text-[16px] text-[#242223]">
@@ -27,6 +29,8 @@ const MainInfo = ({ profileData, setEdit, edit }) => {
             <Image
               src={job}
               alt="job"
+              width={24}
+              height={24}
               className=" w-[24px] h-[24px]"
             />
             UX/UI DESIGNER
@@ -35,6 +39,8 @@ const MainInfo = ({ profileData, setEdit, edit }) => {
             <Image
               src={mail}
               alt="mail"
+              width={24}
+              height={24}
               className=" w-[24px] h-[24px]"
             />
             {profileData?.email || "mariam@gmail.com"}
@@ -48,6 +54,8 @@ const MainInfo = ({ profileData, setEdit, edit }) => {
         <Image
           src={editIcon}
           alt="edit"
+          width={24}
+          height={24}
           className=" w-[24px] h-[24px]"
         />
         {edit ? "cancel Edit" : "Edit Profile"}

@@ -25,6 +25,8 @@ const Navbar = () => {
         <Image
           src={notification}
           alt="notifications"
+          width={24}
+          height={24}
           className=" w-[24px] h-[24px]"
         />
       </button>
@@ -34,6 +36,8 @@ const Navbar = () => {
           <Image
             src={user}
             alt="user"
+            width={60}
+            height={60}
             className=" rounded-full w-[60px] h-[60px]"
           />
         </button>

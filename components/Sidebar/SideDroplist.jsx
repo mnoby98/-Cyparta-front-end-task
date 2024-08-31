@@ -25,6 +25,8 @@ const SideDroplist = ({ image, title, selected, list }) => {
           <Image
             src={image}
             alt=""
+            width={26}
+            height={26}
             className=" w-[26px] h-[26px]"
           />
           <span className={`    ${toggle && "text-customRed "}`}>{title}</span>

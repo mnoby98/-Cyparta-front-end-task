@@ -57,6 +57,8 @@ const Login = () => {
       <Image
         src={logo}
         alt="Cyparta"
+        width={225}
+        height={102}
         className=" w-[225px] mt-[180px] mb-[31px] h-[102px] mx-auto"
       />
 

@@ -27,6 +27,8 @@ const Sidebar = () => {
         <Image
           src={logo}
           alt="Cyparta"
+          width={247}
+          height={158}
           className=" w-[247px] h-[158px]"
         />
       </div>

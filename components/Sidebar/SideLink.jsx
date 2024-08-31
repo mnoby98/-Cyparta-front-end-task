@@ -18,6 +18,8 @@ const SideLink = ({ to, image, title, selected }) => {
         <Image
           src={image}
           alt=""
+          width={26}
+          height={26}
           className=" w-[26px] h-[26px]"
         />
         <span>{title}</span>
