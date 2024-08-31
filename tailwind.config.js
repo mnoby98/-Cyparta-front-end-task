@@ -7,6 +7,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        lexend: ["Lexend", "sans-serif"],
+        cairo: ["Cairo", "sans-serif"],
+      },
+      colors: {
+        customRed: "#EE232F",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
