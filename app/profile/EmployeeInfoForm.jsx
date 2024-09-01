@@ -25,7 +25,7 @@ const PersonalInfoSchema = Yup.object().shape({
 });
 
 const EmployeeInfoForm = ({ edit, profileData, setEdit }) => {
-  const [loading, setLoading] = useState(true); // For Loading
+  const [loading, setLoading] = useState(false); // For Loading
   const [error, setError] = useState(null); // For Errors with Api
   const submitEdit = async (values) => {
     try {
