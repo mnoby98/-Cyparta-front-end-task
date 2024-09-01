@@ -11,10 +11,12 @@ import PasswordField from "@/components/Formik/PasswordField";
 import axios from "axios";
 import { url } from "@/utils/api";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState();
+  const router = useRouter();
 
   const initialValues = { email: "", password: "" };
 
@@ -38,6 +40,9 @@ const Login = () => {
 
       // Login message
       toast.success("You have successfully logged in.");
+
+      // Navigate to Profile page
+      router.push("/profile");
     } catch (error) {
       // Error Details
       toast.error(error.response.data.detail);
