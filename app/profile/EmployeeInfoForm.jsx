@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { url } from "@/utils/api";
+import { useState } from "react";
 
 const PersonalInfoSchema = Yup.object().shape({
   firstName: Yup.string(),
@@ -23,38 +24,42 @@ const PersonalInfoSchema = Yup.object().shape({
   // salaryPerHour: Yup.number(),
 });
 
-const submitEdit = async (values) => {
-  try {
-    const response = await axios.patch(
-      `${url}profile`,
-      {
-        first_name: values.first_name,
-        last_name: values.last_name,
-        email: values.email,
-        phone: values?.mobileNumber,
-        bio: values?.bio || null, //Is not in UI Figma
-      },
-      {
-        // Replace with token from login
-        headers: {
-          Authorization: "Token c4b6558ef8d7c34742bc985931d4bcf68c4f5330", // Your token here
-        },
-      }
-    );
-    console.log("Data submitted successfully:", response.data);
-  } catch (error) {
-    console.error("Error submitting data:", error);
-  }
-};
-
 const EmployeeInfoForm = ({ edit, profileData, setEdit }) => {
+  const [loading, setLoading] = useState(true); // For Loading
+  const [error, setError] = useState(null); // For Errors with Api
+  const submitEdit = async (values) => {
+    try {
+      setLoading(true);
+      const response = await axios.patch(
+        `${url}profile`,
+        {
+          first_name: values.first_name,
+          last_name: values.last_name,
+          email: values.email,
+          phone: values?.mobileNumber,
+          bio: values?.bio || null, //Is not in UI Figma
+        },
+        {
+          // Replace with token from login
+          headers: {
+            Authorization: "Token c4b6558ef8d7c34742bc985931d4bcf68c4f5330", // Your token here
+          },
+        }
+      );
+      console.log("Data submitted successfully:", response.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error submitting data:", error);
+    }
+  };
   return (
     <Formik
       initialValues={{
         // Data from Api || Static
         firstName: profileData?.first_name || "Mariam",
         lastName: profileData?.last_name || "Aly",
-        email: profileData?.email || "mariam@gmail.com ",
+        email: profileData?.email || "mariam@gmail.com",
         mobileNumber: profileData?.phone || "010567240256",
         dateOfBirth: "July 14, 1995",
         maritalStatus: "Single",
@@ -216,10 +221,12 @@ const EmployeeInfoForm = ({ edit, profileData, setEdit }) => {
             <div className=" flex justify-end gap-3">
               <button
                 type="submit"
+                disabled={loading}
                 className="mt-4   bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
                 Submit
               </button>
               <button
+                disabled={loading}
                 onClick={() => setEdit(false)}
                 type="button"
                 className="mt-4 bg-[#242223] hover:bg-[#443434] text-white py-2 px-4 rounded">

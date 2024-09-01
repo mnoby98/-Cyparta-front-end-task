@@ -18,7 +18,9 @@ const ProfileField = ({
         {label}
       </label>
       <Field
-        className="border-b leading-[24px]  text-[16px] focus:outline-none"
+        className={` ${
+          !readOnly ? " bg-slate-50 " : " "
+        } border-b leading-[24px]  text-[16px] focus:outline-none`}
         name={name}
         id={id}
         readOnly={readOnly}
