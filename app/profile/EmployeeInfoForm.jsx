@@ -49,6 +49,8 @@ const EmployeeInfoForm = ({ edit, profileData, setEdit }) => {
       );
       console.log("Data submitted successfully:", response.data);
       setLoading(false);
+      // Close Edit Mode
+      setEdit(false);
     } catch (error) {
       setLoading(false);
       toast.error(error.response.data.detail);
