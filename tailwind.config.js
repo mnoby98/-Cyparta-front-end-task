@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        lexend: ["Lexend", "sans-serif"],
-        cairo: ["Cairo", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
+        lexend: ["var(--font-lexend)", "sans-serif"],
+        cairo: ["var(--font-cairo)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
       colors: {
         customRed: "#EE232F",

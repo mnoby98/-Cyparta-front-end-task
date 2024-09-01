@@ -12,6 +12,7 @@ const MainInfo = ({ profileData, setEdit, edit }) => {
   return (
     <div className=" flex justify-between  ">
       <div className=" flex  gap-[16px]">
+        {/* Employee Image */}
         <Image
           src={profileData?.image || user}
           alt="user"
@@ -20,11 +21,13 @@ const MainInfo = ({ profileData, setEdit, edit }) => {
           className=" w-[100px] h-[100px]"
         />
         <div className=" text-[16px] text-[#242223]">
+          {/* Employee Name */}
           <h2 className=" font-semibold leading-[36px] text-[24px]">
             {profileData?.first_name && profileData?.last_name
               ? profileData?.first_name + " " + profileData?.last_name
               : "Mariam Aly"}
           </h2>
+          {/* Employee Job Title */}
           <span className=" flex items-center gap-[10px] mt-2  font-light">
             <Image
               src={job}
@@ -35,6 +38,7 @@ const MainInfo = ({ profileData, setEdit, edit }) => {
             />
             UX/UI DESIGNER
           </span>
+          {/* Employee Email */}
           <span className=" flex items-center gap-[10px] mt-2  font-light">
             <Image
               src={mail}
@@ -48,9 +52,10 @@ const MainInfo = ({ profileData, setEdit, edit }) => {
         </div>
       </div>
 
+      {/* Toggle edit mode */}
       <button
         onClick={handleEdit}
-        className=" mt-auto h-[50px] flex items-center gap-[10px] bg-[#242223] rounded-[10px] text-white font-light leading-[24px] px-[20px]  ">
+        className=" mt-auto h-[50px] flex items-center gap-[10px] hover:bg-[#443434] bg-[#242223] rounded-[10px] text-white font-light leading-[24px] px-[20px]  ">
         <Image
           src={editIcon}
           alt="edit"

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import Tabs from "./Tabs";
 import EmployeeInfoForm from "./EmployeeInfoForm";
 
-const EmployeeInfo = ({ edit, profileData }) => {
-  const [selectedTab, setSelectedTab] = useState("personal");
+const EmployeeInfo = ({ edit, profileData, setEdit }) => {
+  const [selectedTab, setSelectedTab] = useState("personal"); // Change between Tabs
 
   return (
     <div>
@@ -16,6 +16,7 @@ const EmployeeInfo = ({ edit, profileData }) => {
       {selectedTab === "personal" && (
         <EmployeeInfoForm
           edit={edit}
+          setEdit={setEdit}
           profileData={profileData}
         />
       )}

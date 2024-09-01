@@ -11,7 +11,7 @@ const PersonalInfoSchema = Yup.object().shape({
   mobileNumber: Yup.string().matches(
     /^[0-9]+$/,
     "Mobile number must be Numbers"
-  ),
+  ), //Validation for rest of Employee Info
   // dateOfBirth: Yup.date(),
   // gender: Yup.string(),
   // maritalStatus: Yup.string(),
@@ -35,7 +35,6 @@ const submitEdit = async (values) => {
         bio: values?.bio || null, //Is not in UI Figma
       },
       {
-        // TODO
         // Replace with token from login
         headers: {
           Authorization: "Token c4b6558ef8d7c34742bc985931d4bcf68c4f5330", // Your token here
@@ -48,10 +47,11 @@ const submitEdit = async (values) => {
   }
 };
 
-const EmployeeInfoForm = ({ edit, profileData }) => {
+const EmployeeInfoForm = ({ edit, profileData, setEdit }) => {
   return (
     <Formik
       initialValues={{
+        // Data from Api || Static
         firstName: profileData?.first_name || "Mariam",
         lastName: profileData?.last_name || "Aly",
         email: profileData?.email || "mariam@gmail.com ",
@@ -73,12 +73,13 @@ const EmployeeInfoForm = ({ edit, profileData }) => {
       {({ values, setFieldValue }) => (
         <Form>
           <div className="grid grid-cols-2 font-light gap-[20px]">
+            {/* Custom Field */}
             <ProfileField
               id={"firstName"}
               name={"firstName"}
               placeholder={"Mariam"}
               type={"text"}
-              readOnly={!edit}
+              readOnly={!edit} // Able to edit with toggle
               label={"First Name"}
               value={values.firstName}
             />
@@ -210,12 +211,21 @@ const EmployeeInfoForm = ({ edit, profileData }) => {
               />
             </div>
           </div>
+          {/*  */}
           {edit && (
-            <button
-              type="submit"
-              className="mt-4 bg-red-500 text-white py-2 px-4 rounded">
-              Submit
-            </button>
+            <div className=" flex justify-end gap-3">
+              <button
+                type="submit"
+                className="mt-4   bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
+                Submit
+              </button>
+              <button
+                onClick={() => setEdit(false)}
+                type="button"
+                className="mt-4 bg-[#242223] hover:bg-[#443434] text-white py-2 px-4 rounded">
+                Cancel
+              </button>
+            </div>
           )}
         </Form>
       )}
