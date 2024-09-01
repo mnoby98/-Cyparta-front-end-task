@@ -102,7 +102,7 @@ const Login = () => {
                     type="submit"
                     className="w-full py-4    border border-transparent rounded-[10px]   text-[18px] font-bold text-white bg-black hover:bg-gray-900 focus:outline-none    "
                     disabled={isLoading}>
-                    Login
+                    {isLoading ? "Loading..." : "Login"}
                   </button>
                 </div>
               </Form>

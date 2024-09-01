@@ -220,14 +220,14 @@ const EmployeeInfoForm = ({ edit, profileData, setEdit }) => {
               />
             </div>
           </div>
-          {/*  */}
+          {/* Submit Edit */}
           {edit && (
             <div className=" flex justify-end gap-3">
               <button
                 type="submit"
                 disabled={loading}
                 className="mt-4   bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
-                Submit
+                {loading ? "Loading" : "Submit"}
               </button>
               <button
                 disabled={loading}
