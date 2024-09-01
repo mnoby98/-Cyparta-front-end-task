@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { url } from "@/utils/api";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const PersonalInfoSchema = Yup.object().shape({
   firstName: Yup.string(),
@@ -50,6 +51,7 @@ const EmployeeInfoForm = ({ edit, profileData, setEdit }) => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      toast.error(error.response.data.detail);
       console.error("Error submitting data:", error);
     }
   };
